@@ -44,4 +44,5 @@ Pastikan untuk memperbarui konfigurasi dan informasi terkait ketika ada perubaha
 ## Template Workflow dan File Pendukung
 Kami telah menyediakan template workflow GitHub, Dockerfile, dan docker-compose.yml yang dapat digunakan untuk proyek dalam repositori ini. Silakan gunakan template tersebut untuk mempermudah pengelolaan dan pengembangan proyek Anda.
 
-
+## Penggunaan Variable Environment untuk Akses MySQL
+Gunakanlah variabel environment seperti DB_HOST, DB_USERNAME, dan DB_PASSWORD untuk mengakses MySQL. Dengan menggunakan variabel environment, developer tidak perlu lagi menyertakan password akses ke database secara langsung. Sesuaikan variabel environment ini sesuai dengan konfigurasi yang sesuai dengan pengaturan akses MySQL.
