@@ -3,6 +3,12 @@
 ## Apa itu GitOps?
 GitOps adalah metodologi pengelolaan infrastruktur dan aplikasi menggunakan Git sebagai sumber utama untuk menyimpan konfigurasi, definisi, dan perubahan. Perubahan pada infrastruktur dan aplikasi dipicu melalui Git dan otomatisasi.
 
+## Prosedur Pengajuan Akun
+[Pembuatan akun github dan pengajuan akun github ke Kominfo Kalbar](pembuatan-akun-github.md)
+
+## Panduan Penggunan Github
+[Penggunaan Github Issue](panduan-github-issue.md)
+
 ## Node
 Node adalah komponen dalam jaringan komputer yang bertindak sebagai titik akhir untuk menerima, mengirim, dan memproses data dalam suatu jaringan. Dalam konteks ini, "node" dapat merujuk pada komputer fisik atau virtual di mana aplikasi dan servis dijalankan.
 
