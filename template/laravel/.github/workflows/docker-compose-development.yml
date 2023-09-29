@@ -1,0 +1,54 @@
+name: Docker Stack Deploy
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set current date as a variable
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y%m%d')"
+
+      - name: Extract repository name
+        id: repo_name
+        run: echo "::set-output name=name::$(echo ${GITHUB_REPOSITORY,,} | awk -F '/' '{print $2}')"
+
+      - name: Generate docker-compose.yml
+        run: |
+          sed -e "s|PLACEHOLDER_IMAGE_NAME|10.10.11.93:5000/kominfo/${{ steps.repo_name.outputs.name }}_development:${{ steps.date.outputs.date }}|" \
+              -e "s|PLACEHOLDER_SERVICE_NAME|$(echo ${{ steps.repo_name.outputs.name }}_development | tr '[:upper:]' '[:lower:]')|" \
+              docker-compose-dev.yml > docker-compose-generated.yml
+
+      - name: Tampilkan Hasil Docker Compose
+        run: cat docker-compose-generated.yml
+
+      - name: Remove existing Docker stack
+        run: docker stack rm ${{ steps.repo_name.outputs.name }}_development
+
+      - name: Build Docker image
+        run: | 
+          docker build -t kominfo/${{ steps.repo_name.outputs.name }}_development:${{ steps.date.outputs.date }} \
+            -f Dockerfile \
+            --build-arg DB_HOST=${{ secrets.DB_HOST_DEV }} \
+            --build-arg DB_USERNAME=${{ secrets.DB_USER }} \
+            --build-arg DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
+            --build-arg DB_DATABASE=${{ secrets.DB_DATABASE }} \
+            --build-arg MINIO_HOST=${{ secrets.MINIO_HOST_DEV }} \
+            --build-arg MINIO_ACCESS_KEY=${{ secrets.MINIO_ACCESS_KEY }} \
+            --build-arg MINIO_BUCKET_NAME=${{ secrets.MINIO_BUCKET_NAME }} \
+            --build-arg MINIO_SECRET_KEY=${{ secrets.MINIO_SECRET_KEY }} \
+            .
+
+      - name: Push image ke repo docker kominfo
+        run: docker tag kominfo/${{ steps.repo_name.outputs.name }}_development:${{ steps.date.outputs.date }} 10.10.11.93:5000/kominfo/${{ steps.repo_name.outputs.name }}_development:${{ steps.date.outputs.date }} &&  docker push 10.10.11.93:5000/kominfo/${{ steps.repo_name.outputs.name }}_development:${{ steps.date.outputs.date }}
+
+      - name: Deploy using docker stack
+        run: docker stack deploy -c docker-compose-generated.yml ${{ steps.repo_name.outputs.name }}_development
