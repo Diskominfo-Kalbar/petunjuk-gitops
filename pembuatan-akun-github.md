@@ -1,6 +1,6 @@
-### [**Prosedur Pembuatan Akun Github**]
+# [**Prosedur Pembuatan Akun Github**]
 
-1.  Pendaftaran di GitHub:
+## 1.  Pendaftaran di GitHub:
 
     a.  Pengguna yang belum memiliki akun GitHub harus mendaftar di
         > [github.com](https://github.com/).
@@ -12,33 +12,33 @@
         > kata sandi. Ikuti langkah-langkah yang diberikan untuk
         > menyelesaikan pendaftaran.
 
-2.  Verifikasi Akun:
+## 2.  Verifikasi Akun:
 
-    d.  Setelah mendaftar, GitHub akan mengirimkan email verifikasi ke
+    a.  Setelah mendaftar, GitHub akan mengirimkan email verifikasi ke
         > alamat email yang digunakan saat pendaftaran.
 
-    e.  Pengguna harus membuka email tersebut dan mengikuti tautan untuk
+    b.  Pengguna harus membuka email tersebut dan mengikuti tautan untuk
         > memverifikasi akun.
 
-3.  Konfirmasi Akun:
+## 3.  Konfirmasi Akun:
 
-    f.  Setelah verifikasi, pengguna harus masuk ke akun GitHub yang
+    a.  Setelah verifikasi, pengguna harus masuk ke akun GitHub yang
         > baru dibuat.
 
-    g.  Pengguna disarankan untuk memeriksa dan mengkonfirmasi profil
+    b.  Pengguna disarankan untuk memeriksa dan mengkonfirmasi profil
         > serta mengatur preferensi privasi sesuai kebutuhan.
 
-4.  Pengumpulan Informasi:
+## 4.  Pengumpulan Informasi:
 
-> Tim pengembangan perangkat lunak mengumpulkan email dan username semua
-> orang yang terlibat dalam pengembangan software.
+    Tim pengembangan perangkat lunak mengumpulkan email dan username semua
+    orang yang terlibat dalam pengembangan software.
 
-5.  Pengiriman Informasi Tim ke Diskominfo Kalbar:
+## 5.  Pengiriman Informasi Tim ke Diskominfo Kalbar:
 
-    h.  Tim pengembangan perangkat lunak menyusun daftar email dan
+    a.  Tim pengembangan perangkat lunak menyusun daftar email dan
         > username yang terkumpul.
 
-    i.  Tim pengembangan perangkat lunak melalui Perangkat Daerah/
+    b.  Tim pengembangan perangkat lunak melalui Perangkat Daerah/
         > Satuan Kerja menyampaikan daftar email dan username Tim yang
         > dikumpul untuk dikirim ke Diskominfo Kalbar secara resmi
         > menggunakan Surat Dinas.
