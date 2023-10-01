@@ -46,4 +46,4 @@
 ### [**Catatan Tambahan:**](https://github.com/Diskominfo-Kalbar/petunjuk-gitops/blob/main/pembuatan-akun-github.md#catatan-tambahan)
 
 -   Amankan informasi sensitif seperti kata sandi dan kredensial dengan
-    > baik untuk menjaga keamanan akun.
+    baik untuk menjaga keamanan akun.
