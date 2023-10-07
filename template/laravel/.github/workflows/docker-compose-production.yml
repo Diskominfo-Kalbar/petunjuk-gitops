@@ -1,4 +1,4 @@
-name: Docker Stack Deploy
+name: Deploy Production
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
 
       - name: Generate docker-compose.yml
         run: |
-          sed -e "s|PLACEHOLDER_IMAGE_NAME|10.10.11.93:5000/kominfo/${{ steps.repo_name.outputs.name }}_production:${{ steps.date.outputs.date }}|" \
+          sed -e "s|PLACEHOLDER_IMAGE_NAME|10.10.11.93:5000/kominfo/${{ steps.repo_name.outputs.name }}_production:latest|" \
               -e "s|PLACEHOLDER_SERVICE_NAME|$(echo ${{ steps.repo_name.outputs.name }}_production | tr '[:upper:]' '[:lower:]')|" \
               docker-compose-prod.yml > docker-compose-generated.yml
 
@@ -32,7 +32,7 @@ jobs:
 
       - name: Build Docker image
         run: | 
-          docker build -t kominfo/${{ steps.repo_name.outputs.name }}_production:${{ steps.date.outputs.date }} \
+          docker build -t kominfo/${{ steps.repo_name.outputs.name }}_production:latest \
             -f Dockerfile \
             --build-arg DB_HOST=${{ secrets.DB_HOST }} \
             --build-arg DB_USERNAME=${{ secrets.DB_USER }} \
@@ -45,7 +45,7 @@ jobs:
             .
 
       - name: Push image ke repo docker kominfo
-        run: docker tag kominfo/${{ steps.repo_name.outputs.name }}_production:${{ steps.date.outputs.date }} 10.10.11.93:5000/kominfo/${{ steps.repo_name.outputs.name }}_production:${{ steps.date.outputs.date }} &&  docker push 10.10.11.93:5000/kominfo/${{ steps.repo_name.outputs.name }}_production:${{ steps.date.outputs.date }}
+        run: docker tag kominfo/${{ steps.repo_name.outputs.name }}_production:latest 10.10.11.93:5000/kominfo/${{ steps.repo_name.outputs.name }}_production:latest &&  docker push 10.10.11.93:5000/kominfo/${{ steps.repo_name.outputs.name }}_production:latest
 
       - name: Deploy using docker stack
         run: docker stack deploy -c docker-compose-generated.yml ${{ steps.repo_name.outputs.name }}_production
