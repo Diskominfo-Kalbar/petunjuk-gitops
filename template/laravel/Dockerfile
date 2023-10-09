@@ -1,4 +1,4 @@
-FROM php:7.3-fpm
+FROM php:8.0-fpm
 
 ARG DB_HOST
 ARG DB_USERNAME
@@ -84,4 +84,11 @@ RUN  touch /var/www/storage/logs/laravel.log && chown www-data:www-data /var/www
 RUN chmod +x /docker/run.sh
 
 EXPOSE 80
-ENTRYPOINT ["/docker/run.sh"]
+# Run the necessary commands at container startup
+CMD ["sh", "-c", "\
+    chmod -R 775 /var/www/storage && \
+    chown -R www-data:www-data /var/www/storage && \
+    php artisan key:generate && \
+    touch /var/www/storage/logs/laravel.log && \
+    chown www-data:www-data /var/www/storage/logs/laravel.log && \
+    /usr/bin/supervisord -c /etc/supervisord.conf"]
