@@ -30,7 +30,7 @@ Kominfo Kalbar menggunakan empat virtual machine (VM) yang dijelaskan sebagai be
 
 2. **Node Aplikasi (Dapat Diperluas):** VM ini berperan sebagai node dalam Docker Swarm dan berisi berbagai container aplikasi. Node aplikasi ini adalah bagian yang dapat diperluas, yang berarti Anda dapat memiliki lebih dari satu VM dalam cluster ini sesuai dengan kebutuhan. Node aplikasi juga berperan sebagai proxy yang mengarahkan permintaan pengguna ke container-container aplikasi yang sesuai.
 
-3. **Node AWDI:** Terdapat satu VM yang di khususkan untuk menjalankan container AWDI (Andalan Water Data Integration). VM ini menjalankan kontainer AWDI secara eksklusif.
+3. **Node AWDI:** Terdapat satu VM yang di khususkan untuk menjalankan container AWDI. VM ini menjalankan kontainer AWDI secara eksklusif.
 
 4. **Node Object Storage:** VM ini bertugas menjalankan Minio Server, yang berperan sebagai penyimpanan objek atau object storage. Minio Server digunakan untuk penyimpanan objek seperti gambar, video, dan file lainnya yang diperlukan oleh aplikasi.
 
