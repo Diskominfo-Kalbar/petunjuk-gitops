@@ -4,7 +4,7 @@ Penggunaan GitOps dalam pengembangan dan pengelolaan aplikasi semakin populer da
 
 Selain itu, penggunaan Docker Swarm sebagai orkestrator kontainer memberikan fleksibilitas dalam pengelolaan aplikasi. Polise, aplikasi penghubung yang memfasilitasi Single Sign-On (SSO), pembaruan berita melalui pesan commit di GitHub, pelaporan masalah oleh pengguna, penilaian pengguna, dan halaman kontribusi developer, akan memberikan layanan yang lebih baik kepada pengguna dan memudahkan pengembang dalam berkontribusi.
 
-[Detil Aplikasi pada web polise](https://ibb.co/0XXgTff)
+![Detil Aplikasi pada web polise](https://ibb.co/0XXgTff)
 
 ## Manfaat
 
