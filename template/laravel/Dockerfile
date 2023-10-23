@@ -88,6 +88,7 @@ EXPOSE 80
 CMD ["sh", "-c", "\
     chmod -R 775 /var/www/storage && \
     chown -R www-data:www-data /var/www/storage && \
+    composer install && \
     php artisan key:generate && \
     touch /var/www/storage/logs/laravel.log && \
     chown www-data:www-data /var/www/storage/logs/laravel.log && \
