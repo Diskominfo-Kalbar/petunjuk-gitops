@@ -1,10 +1,10 @@
-# GitOps Quick Guide
-
 ## Latar Belakang
 
 Penggunaan GitOps dalam pengembangan dan pengelolaan aplikasi semakin populer dalam dunia teknologi. GitOps adalah pendekatan yang mengintegrasikan Git (misalnya, GitHub) sebagai sumber kebenaran tunggal untuk infrastruktur dan konfigurasi aplikasi. Ini dapat menjadi solusi yang efektif untuk meningkatkan pengelolaan aplikasi dan infrastruktur.
 
 Selain itu, penggunaan Docker Swarm sebagai orkestrator kontainer memberikan fleksibilitas dalam pengelolaan aplikasi. Polise, aplikasi penghubung yang memfasilitasi Single Sign-On (SSO), pembaruan berita melalui pesan commit di GitHub, pelaporan masalah oleh pengguna, penilaian pengguna, dan halaman kontribusi developer, akan memberikan layanan yang lebih baik kepada pengguna dan memudahkan pengembang dalam berkontribusi.
+
+![Detil Aplikasi pada web polise](https://ibb.co/0XXgTff)
 
 ## Manfaat
 
