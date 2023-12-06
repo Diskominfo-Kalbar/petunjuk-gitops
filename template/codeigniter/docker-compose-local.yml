@@ -1,0 +1,29 @@
+version: '3.5'
+
+services:
+  laravel_app:
+    user: ${MY_UID}:${MY_GID}
+    restart: always
+    build:
+      context: '.'
+    ports:
+      - "8080:80"
+    environment:
+      - DB_CONNECTION=mysql
+      - APP_DEBUG=TRUE
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=root
+    volumes:
+     - ./src:/var/www
+
+  db:
+    image: mariadb:11.1
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+volumes:
+  mariadb_data: # Nama volume yang akan digunakan
