@@ -31,13 +31,12 @@ Buka file .github/workflows (docker-compose-development.yml atau docker-compose-
       --build-arg MINIO_SECRET_KEY=${{ secrets.MINIO_SECRET_KEY }} \
       --build-arg KEYCLOAK_CLIENT_ID=${{ secrets.KEYCLOAK_CLIENT_ID }} \
       --build-arg KEYCLOAK_CLIENT_SECRET=${{ secrets.KEYCLOAK_CLIENT_SECRET }} \
-      --build-arg KEYCLOAK_REDIRECT_URI=${{ secrets.KEYCLOAK_REDIRECT_URI }} \
       --build-arg KEYCLOAK_BASE_URL=${{ secrets.KEYCLOAK_BASE_URL }} \
       --build-arg KEYCLOAK_REALM=${{ secrets.KEYCLOAK_REALM }} \
       .
 ```
 
-Pastikan untuk menyertakan secret yang sesuai untuk KEYCLOAK_CLIENT_ID, KEYCLOAK_CLIENT_SECRET, KEYCLOAK_REDIRECT_URI, KEYCLOAK_BASE_URL, dan KEYCLOAK_REALM.
+Pastikan untuk menyertakan secret yang sesuai untuk KEYCLOAK_CLIENT_ID, KEYCLOAK_CLIENT_SECRET, KEYCLOAK_BASE_URL, dan KEYCLOAK_REALM.
 
 3. **Update Dockerfile**
 
@@ -50,18 +49,16 @@ ENV DB_HOST=${DB_HOST}
 # Tambahkan ARG dan ENV untuk Keycloak
 ARG KEYCLOAK_CLIENT_ID
 ARG KEYCLOAK_CLIENT_SECRET
-ARG KEYCLOAK_REDIRECT_URI
 ARG KEYCLOAK_BASE_URL
 ARG KEYCLOAK_REALM
 
 ENV KEYCLOAK_CLIENT_ID=${KEYCLOAK_CLIENT_ID}
 ENV KEYCLOAK_CLIENT_SECRET=${KEYCLOAK_CLIENT_SECRET}
-ENV KEYCLOAK_REDIRECT_URI=${KEYCLOAK_REDIRECT_URI}
 ENV KEYCLOAK_BASE_URL=${KEYCLOAK_BASE_URL}
 ENV KEYCLOAK_REALM=${KEYCLOAK_REALM}
 ```
 
-Pastikan untuk menyertakan ARG dan ENV untuk KEYCLOAK_CLIENT_ID, KEYCLOAK_CLIENT_SECRET, KEYCLOAK_REDIRECT_URI, KEYCLOAK_BASE_URL, dan KEYCLOAK_REALM.
+Pastikan untuk menyertakan ARG dan ENV untuk KEYCLOAK_CLIENT_ID, KEYCLOAK_CLIENT_SECRET, KEYCLOAK_BASE_URL, dan KEYCLOAK_REALM.
 
 Dengan langkah-langkah ini, nilai-nilai secret GitHub akan digunakan dalam proses build Docker image.
 
@@ -71,7 +68,6 @@ Dengan langkah-langkah ini, nilai-nilai secret GitHub akan digunakan dalam prose
    ```dotenv
    KEYCLOAK_CLIENT_ID
    KEYCLOAK_CLIENT_SECRET
-   KEYCLOAK_REDIRECT_URI
    KEYCLOAK_BASE_URL
    KEYCLOAK_REALM
    ```
