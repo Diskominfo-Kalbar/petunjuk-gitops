@@ -105,4 +105,4 @@ class LoginController extends Controller
 
 ## Kesimpulan
 
-Dengan mengikuti panduan ini, Anda dapat mengintegrasikan otentikasi SSO menggunakan Keycloak dalam aplikasi Laravel dengan bantuan Socialite Keycloak Provider. Pastikan Anda sudah menyesuaikan kredensial Keycloak pada file `.env` sesuai dengan konfigurasi Anda.
+Dengan mengikuti panduan ini, Anda dapat mengintegrasikan otentikasi SSO menggunakan Keycloak dalam aplikasi Laravel dengan bantuan Socialite Keycloak Provider.
