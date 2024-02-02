@@ -14,7 +14,7 @@ Dokumen ini memberikan panduan langkah demi langkah untuk mengintegrasikan Singl
 
 2. **Konfigurasi Kredensial Keycloak**
 
-    nilai sudah tersedia tinggal di gunakan panggil env
+    nilai sudah tersedia tinggal di gunakan saja nilai envorionment nya
    ```dotenv
    KEYCLOAK_CLIENT_ID
    KEYCLOAK_CLIENT_SECRET
@@ -22,6 +22,64 @@ Dokumen ini memberikan panduan langkah demi langkah untuk mengintegrasikan Singl
    KEYCLOAK_BASE_URL
    KEYCLOAK_REALM
    ```
+
+3. **Konfigurasi ENV KEYCLOAK_REDIRECT_URI **
+
+Untuk lingkungan pengembangan (`docker-compose-dev.yml`):
+
+```yaml
+version: '3.5'
+
+services:
+  your_service_name:
+    user: ${MY_UID}:${MY_GID}
+    build:
+      context: '.'
+    image: your_image_name
+    networks:
+      - kominfo_network
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == node-manager
+    environment:
+      - DB_CONNECTION=mysql
+      - APP_DEBUG=TRUE
+      - KEYCLOAK_REDIRECT_URI=your_callback_url
+
+networks:
+  kominfo_network:
+    external: true
+```
+
+Untuk lingkungan produksi (`docker-compose-prod.yml`):
+
+```yaml
+version: '3.5'
+
+services:
+  your_service_name:
+    user: ${MY_UID}:${MY_GID}
+    build:
+      context: '.'
+    image: your_image_name
+    networks:
+      - kominfo_network
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == node-manager
+    environment:
+      - DB_CONNECTION=mysql
+      - APP_DEBUG=FALSE
+      - KEYCLOAK_REDIRECT_URI=your_callback_url
+
+networks:
+  kominfo_network:
+    external: true
+```
+
+Pastikan untuk menyesuaikan nilai `your_callback_url` dengan URL callback aplikasi Laravel Anda.
 
 ## Implementasi Controller
 
