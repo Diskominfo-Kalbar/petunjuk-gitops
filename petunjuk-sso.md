@@ -12,7 +12,60 @@ Dokumen ini memberikan panduan langkah demi langkah untuk mengintegrasikan Singl
    composer require socialiteproviders/keycloak
    ```
 
-2. **Konfigurasi Kredensial Keycloak**
+2. **Update File .github/workflows**
+
+Buka file .github/workflows (docker-compose-development.yml atau docker-compose-production.yml) dan tambahkan perintah untuk mengambil nilai secret dari environment GitHub.
+
+```yaml
+- name: Build Docker image
+  run: | 
+    docker build -t kominfo/${{ steps.repo_name.outputs.name }}_production:latest \
+      -f Dockerfile \
+      --build-arg DB_HOST=${{ secrets.DB_HOST }} \
+      --build-arg DB_USERNAME=${{ secrets.DB_USER }} \
+      --build-arg DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
+      --build-arg DB_DATABASE=${{ secrets.DB_DATABASE }} \
+      --build-arg MINIO_HOST=${{ secrets.MINIO_HOST }} \
+      --build-arg MINIO_ACCESS_KEY=${{ secrets.MINIO_ACCESS_KEY }} \
+      --build-arg MINIO_BUCKET_NAME=${{ secrets.MINIO_BUCKET_NAME }} \
+      --build-arg MINIO_SECRET_KEY=${{ secrets.MINIO_SECRET_KEY }} \
+      --build-arg KEYCLOAK_CLIENT_ID=${{ secrets.KEYCLOAK_CLIENT_ID }} \
+      --build-arg KEYCLOAK_CLIENT_SECRET=${{ secrets.KEYCLOAK_CLIENT_SECRET }} \
+      --build-arg KEYCLOAK_REDIRECT_URI=${{ secrets.KEYCLOAK_REDIRECT_URI }} \
+      --build-arg KEYCLOAK_BASE_URL=${{ secrets.KEYCLOAK_BASE_URL }} \
+      --build-arg KEYCLOAK_REALM=${{ secrets.KEYCLOAK_REALM }} \
+      .
+```
+
+Pastikan untuk menyertakan secret yang sesuai untuk KEYCLOAK_CLIENT_ID, KEYCLOAK_CLIENT_SECRET, KEYCLOAK_REDIRECT_URI, KEYCLOAK_BASE_URL, dan KEYCLOAK_REALM.
+
+3. **Update Dockerfile**
+
+Buka Dockerfile dan tambahkan ARG serta ENV untuk secret yang dibutuhkan:
+
+```Dockerfile
+ARG DB_HOST
+ENV DB_HOST=${DB_HOST}
+
+# Tambahkan ARG dan ENV untuk Keycloak
+ARG KEYCLOAK_CLIENT_ID
+ARG KEYCLOAK_CLIENT_SECRET
+ARG KEYCLOAK_REDIRECT_URI
+ARG KEYCLOAK_BASE_URL
+ARG KEYCLOAK_REALM
+
+ENV KEYCLOAK_CLIENT_ID=${KEYCLOAK_CLIENT_ID}
+ENV KEYCLOAK_CLIENT_SECRET=${KEYCLOAK_CLIENT_SECRET}
+ENV KEYCLOAK_REDIRECT_URI=${KEYCLOAK_REDIRECT_URI}
+ENV KEYCLOAK_BASE_URL=${KEYCLOAK_BASE_URL}
+ENV KEYCLOAK_REALM=${KEYCLOAK_REALM}
+```
+
+Pastikan untuk menyertakan ARG dan ENV untuk KEYCLOAK_CLIENT_ID, KEYCLOAK_CLIENT_SECRET, KEYCLOAK_REDIRECT_URI, KEYCLOAK_BASE_URL, dan KEYCLOAK_REALM.
+
+Dengan langkah-langkah ini, nilai-nilai secret GitHub akan digunakan dalam proses build Docker image.
+
+4. **Menggunakan Kredensial Keycloak**
 
     nilai sudah tersedia tinggal di gunakan saja nilai envorionment nya
    ```dotenv
@@ -23,7 +76,7 @@ Dokumen ini memberikan panduan langkah demi langkah untuk mengintegrasikan Singl
    KEYCLOAK_REALM
    ```
 
-3. **Konfigurasi ENV KEYCLOAK_REDIRECT_URI **
+3. **Konfigurasi ENV KEYCLOAK_REDIRECT_URI**
 
 Untuk lingkungan pengembangan (`docker-compose-dev.yml`):
 
