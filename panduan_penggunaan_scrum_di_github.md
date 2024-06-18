@@ -27,15 +27,15 @@
     - Sprint 2: "Implementasi fitur pencarian dan filter data."
     - Rilis versi 1.0: "Selesaikan semua fitur utama dan perbaikan bug."
 
-## Peran Diskominfo Kalimantan Barat sebagai Product Owner
-- **Tanggung Jawab Product Owner:**
+## Peran Diskominfo Kalimantan Barat sebagai Product Manager
+- **Tanggung Jawab Product Manager:**
   - Menentukan dan memprioritaskan backlog produk.
   - Memastikan tim memahami pekerjaan yang harus dilakukan.
   - Melakukan komunikasi dengan pemangku kepentingan untuk mengklarifikasi kebutuhan dan prioritas.
 
-- **Langkah-langkah Product Owner dalam Membuat Issue dan Milestone:**
+- **Langkah-langkah Product Manager dalam Membuat Issue dan Milestone:**
 
-### **Langkah 1: Product Owner Membuat Issue**
+### **Langkah 1: Product Manager Membuat Issue**
 - **Langkah-langkah Membuat Issue:**
   1. Navigasi ke tab Issues di repositori GitHub.
   2. Klik "New Issue".
@@ -61,7 +61,7 @@
   - @developer-username
   ```
 
-### **Langkah 2: Product Owner Membuat Milestone**
+### **Langkah 2: Product Manager Membuat Milestone**
 - **Langkah-langkah Membuat Milestone:**
   1. Navigasi ke tab Issues di repositori GitHub.
   2. Klik "Milestones" dan kemudian "New Milestone".
