@@ -27,7 +27,7 @@
     - Sprint 2: "Implementasi fitur pencarian dan filter data."
     - Rilis versi 1.0: "Selesaikan semua fitur utama dan perbaikan bug."
 
-## Peran Diskominfo Kalimantan Barat sebagai Product Manager
+## Peran Product Manager
 - **Tanggung Jawab Product Manager:**
   - Menentukan dan memprioritaskan backlog produk.
   - Memastikan tim memahami pekerjaan yang harus dilakukan.
