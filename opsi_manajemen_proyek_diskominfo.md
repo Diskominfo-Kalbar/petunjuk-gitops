@@ -38,31 +38,8 @@ Diskominfo sedang mengembangkan sistem pemantauan lingkungan. Mereka menggunakan
 **Contoh:**
 Tim memulai dengan analisis kebutuhan untuk sistem pemantauan lingkungan. Mereka membuat dokumen spesifikasi yang mendetail. Setelah itu, mereka merancang sistem dan mulai mengembangkannya. Setelah semua pengembangan selesai, mereka melakukan pengujian menyeluruh sebelum akhirnya menerapkan sistem di lapangan.
 
-### 4. Lean
-**Cerita:**
-Diskominfo ingin meningkatkan efisiensi proses administrasi internal. Mereka menggunakan metode Lean untuk mengurangi pemborosan dan meningkatkan efisiensi.
 
-**Langkah-langkah:**
-1. **Identifikasi Nilai:** Tim mengidentifikasi tugas-tugas yang memberikan nilai paling besar.
-2. **Mengurangi Pemborosan:** Tim mencari dan menghilangkan aktivitas yang tidak memberikan nilai tambah.
-3. **Umpan Balik Cepat:** Tim melakukan iterasi pendek dan mendapatkan umpan balik cepat untuk perbaikan berkelanjutan.
-
-**Contoh:**
-Tim memulai dengan mengidentifikasi bahwa tugas persetujuan dokumen sangat memakan waktu. Mereka membuat issue untuk setiap langkah dalam proses persetujuan dan menetapkan milestone untuk menyelesaikan perbaikan proses dalam iterasi pendek. Setelah iterasi selesai, mereka mendapatkan umpan balik dan segera menerapkan perbaikan lebih lanjut.
-
-### 5. Extreme Programming (XP)
-**Cerita:**
-Diskominfo sedang membuat aplikasi mobile untuk pelaporan bencana. Mereka menggunakan metode Extreme Programming (XP) untuk fokus pada kualitas kode dan fleksibilitas pengembangan.
-
-**Langkah-langkah:**
-1. **Pair Programming:** Dua pengembang bekerja bersama pada satu komputer untuk menulis kode.
-2. **Test-Driven Development (TDD):** Tim menulis tes sebelum menulis kode untuk memastikan setiap bagian kode diuji dengan baik.
-3. **Continuous Integration:** Kode diintegrasikan ke dalam basis kode utama beberapa kali sehari.
-
-**Contoh:**
-Dua pengembang bekerja bersama (pair programming) untuk menulis fitur pelaporan lokasi bencana. Mereka menulis tes terlebih dahulu untuk memverifikasi bahwa fitur bekerja dengan baik (TDD). Setiap perubahan kode segera diintegrasikan dan diuji untuk memastikan tidak ada kesalahan baru yang muncul (continuous integration).
-
-### 6. Custom Workflow
+### 4. Custom Workflow
 **Cerita:**
 Diskominfo memiliki proyek unik untuk mengembangkan sistem e-government. Mereka memutuskan untuk menggunakan pendekatan yang disesuaikan (custom workflow) yang menggabungkan elemen-elemen dari berbagai metode.
 
@@ -165,39 +142,8 @@ Dengan cerita-cerita ini, diharapkan pemahaman tentang penerapan berbagai metode
 **Perbedaan Utama:**
 - Waterfall berjalan dalam tahapan yang berurutan. Satu tahapan selesai sebelum tahapan berikutnya dimulai.
 
-### 4. Lean
-**Pendekatan:**
-- Fokus pada efisiensi dan pengurangan pemborosan.
-- Melakukan iterasi pendek dan mendapatkan umpan balik cepat.
 
-**Implementasi di GitHub:**
-- **Issues:** 
-  - Buat tugas-tugas (tasks) dan fitur.
-  - Gunakan label untuk mengelompokkan dan mengatur tugas.
-- **Milestones:** 
-  - Buat milestones untuk iterasi pendek atau waktu pengiriman tertentu.
-  - Tugas-tugas ditetapkan ke milestones yang relevan.
-
-**Perbedaan Utama:**
-- Lean berfokus pada bekerja efisien dan mengurangi pemborosan.
-
-### 5. Extreme Programming (XP)
-**Pendekatan:**
-- Berfokus pada kualitas kode dan fleksibilitas pengembangan.
-- Menggunakan praktik seperti pair programming dan pengujian berbasis kode (TDD).
-
-**Implementasi di GitHub:**
-- **Issues:** 
-  - Buat tugas-tugas (tasks) seperti user stories, pekerjaan, atau bug.
-  - Gunakan label untuk menunjukkan jenis tugas.
-- **Milestones:** 
-  - Buat milestones untuk iterasi atau waktu pengiriman tertentu.
-  - Tugas-tugas ditetapkan ke milestones untuk melacak progres.
-
-**Perbedaan Utama:**
-- XP berfokus pada praktik pengembangan khusus dan kualitas kode.
-
-### 6. Custom Workflow
+### 4. Custom Workflow
 **Pendekatan:**
 - Menyesuaikan metode sesuai dengan kebutuhan tim atau proyek.
 
