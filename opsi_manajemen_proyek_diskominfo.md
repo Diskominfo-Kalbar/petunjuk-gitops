@@ -1,3 +1,82 @@
+### 1. SCRUM
+**Cerita:**
+Diskominfo sedang membuat aplikasi pelayanan publik. Tim proyek menggunakan SCRUM. Mereka membagi pekerjaan ke dalam periode waktu tetap yang disebut sprint, yang berlangsung selama dua minggu.
+
+**Langkah-langkah:**
+1. **Sprint Planning:** Pada awal setiap sprint, tim mengadakan pertemuan untuk merencanakan pekerjaan yang akan dilakukan. Mereka membuat daftar tugas (issues) dan menetapkan tujuan (milestones) untuk sprint tersebut.
+2. **Daily Stand-up:** Setiap hari, tim mengadakan pertemuan singkat untuk membahas progres dan hambatan yang dihadapi.
+3. **Sprint Review:** Di akhir sprint, tim mempresentasikan hasil kerja mereka kepada pemangku kepentingan untuk mendapatkan feedback.
+4. **Sprint Retrospective:** Tim mengadakan pertemuan untuk mengevaluasi proses kerja dan mencari cara untuk meningkatkan efisiensi di sprint berikutnya.
+
+**Contoh:**
+Dalam sprint pertama, tim berfokus pada pembuatan halaman login aplikasi. Mereka membuat issue untuk setiap tugas seperti desain antarmuka, pengembangan backend, dan pengujian keamanan. Semua tugas tersebut ditetapkan ke milestone sprint pertama. Setelah dua minggu, halaman login selesai dan siap untuk dievaluasi.
+
+### 2. Kanban
+**Cerita:**
+Diskominfo sedang memperbaiki sistem pengaduan masyarakat. Mereka menggunakan Kanban untuk mengelola pekerjaan mereka secara berkesinambungan.
+
+**Langkah-langkah:**
+1. **Visualisasi Pekerjaan:** Tim membuat daftar tugas (issues) dan menggunakan label untuk menunjukkan status (misalnya, "To Do", "In Progress", "Done").
+2. **Mengelola Aliran Pekerjaan:** Tugas-tugas dipindahkan dari satu status ke status berikutnya sesuai dengan progres.
+3. **Membatasi Pekerjaan yang Sedang Dikerjakan:** Tim memastikan tidak ada terlalu banyak tugas yang sedang dikerjakan sekaligus untuk menghindari penumpukan pekerjaan.
+
+**Contoh:**
+Tim menerima pengaduan baru tentang kesulitan akses layanan. Mereka membuat issue baru dengan label "To Do". Seorang anggota tim mulai bekerja dan mengubah label menjadi "In Progress". Setelah selesai, label diubah menjadi "Done". Ini terus berlanjut tanpa batasan waktu tetap, sehingga tim bisa menangani masalah dengan cepat dan efisien.
+
+### 3. Waterfall
+**Cerita:**
+Diskominfo sedang mengembangkan sistem pemantauan lingkungan. Mereka menggunakan metode Waterfall, di mana proyek dibagi menjadi tahapan berurutan.
+
+**Langkah-langkah:**
+1. **Analisis:** Tim mengumpulkan kebutuhan dan membuat dokumen spesifikasi.
+2. **Desain:** Tim merancang sistem berdasarkan spesifikasi.
+3. **Pengembangan:** Tim mulai mengembangkan perangkat lunak.
+4. **Pengujian:** Setelah pengembangan selesai, tim menguji sistem untuk memastikan semuanya bekerja dengan baik.
+5. **Implementasi:** Sistem diterapkan di lingkungan sebenarnya.
+6. **Pemeliharaan:** Tim melakukan pemeliharaan dan perbaikan jika diperlukan.
+
+**Contoh:**
+Tim memulai dengan analisis kebutuhan untuk sistem pemantauan lingkungan. Mereka membuat dokumen spesifikasi yang mendetail. Setelah itu, mereka merancang sistem dan mulai mengembangkannya. Setelah semua pengembangan selesai, mereka melakukan pengujian menyeluruh sebelum akhirnya menerapkan sistem di lapangan.
+
+### 4. Lean
+**Cerita:**
+Diskominfo ingin meningkatkan efisiensi proses administrasi internal. Mereka menggunakan metode Lean untuk mengurangi pemborosan dan meningkatkan efisiensi.
+
+**Langkah-langkah:**
+1. **Identifikasi Nilai:** Tim mengidentifikasi tugas-tugas yang memberikan nilai paling besar.
+2. **Mengurangi Pemborosan:** Tim mencari dan menghilangkan aktivitas yang tidak memberikan nilai tambah.
+3. **Umpan Balik Cepat:** Tim melakukan iterasi pendek dan mendapatkan umpan balik cepat untuk perbaikan berkelanjutan.
+
+**Contoh:**
+Tim memulai dengan mengidentifikasi bahwa tugas persetujuan dokumen sangat memakan waktu. Mereka membuat issue untuk setiap langkah dalam proses persetujuan dan menetapkan milestone untuk menyelesaikan perbaikan proses dalam iterasi pendek. Setelah iterasi selesai, mereka mendapatkan umpan balik dan segera menerapkan perbaikan lebih lanjut.
+
+### 5. Extreme Programming (XP)
+**Cerita:**
+Diskominfo sedang membuat aplikasi mobile untuk pelaporan bencana. Mereka menggunakan metode Extreme Programming (XP) untuk fokus pada kualitas kode dan fleksibilitas pengembangan.
+
+**Langkah-langkah:**
+1. **Pair Programming:** Dua pengembang bekerja bersama pada satu komputer untuk menulis kode.
+2. **Test-Driven Development (TDD):** Tim menulis tes sebelum menulis kode untuk memastikan setiap bagian kode diuji dengan baik.
+3. **Continuous Integration:** Kode diintegrasikan ke dalam basis kode utama beberapa kali sehari.
+
+**Contoh:**
+Dua pengembang bekerja bersama (pair programming) untuk menulis fitur pelaporan lokasi bencana. Mereka menulis tes terlebih dahulu untuk memverifikasi bahwa fitur bekerja dengan baik (TDD). Setiap perubahan kode segera diintegrasikan dan diuji untuk memastikan tidak ada kesalahan baru yang muncul (continuous integration).
+
+### 6. Custom Workflow
+**Cerita:**
+Diskominfo memiliki proyek unik untuk mengembangkan sistem e-government. Mereka memutuskan untuk menggunakan pendekatan yang disesuaikan (custom workflow) yang menggabungkan elemen-elemen dari berbagai metode.
+
+**Langkah-langkah:**
+1. **Tentukan Kebutuhan:** Tim mengidentifikasi metode dan praktik terbaik yang paling cocok untuk proyek mereka.
+2. **Kombinasikan Metode:** Mereka menggabungkan elemen-elemen dari SCRUM, Kanban, dan Lean untuk menciptakan alur kerja yang optimal.
+3. **Adaptasi Berkelanjutan:** Tim terus mengadaptasi proses mereka berdasarkan umpan balik dan perubahan kebutuhan proyek.
+
+**Contoh:**
+Tim menggunakan sprint seperti dalam SCRUM untuk mengelola pekerjaan dalam interval waktu tetap. Namun, mereka juga menggunakan alur kerja Kanban untuk mengelola tugas harian dan memastikan aliran kerja yang berkesinambungan. Mereka fokus pada pengurangan pemborosan seperti dalam Lean untuk meningkatkan efisiensi.
+
+Dengan cerita-cerita ini, diharapkan pemahaman tentang penerapan berbagai metode manajemen proyek di GitHub bisa lebih mudah dimengerti, bahkan oleh orang yang sangat awam.
+
+
 ### Apakah Lebih Baik Diskominfo Menggunakan SCRUM Saja atau Bebas Developer Menggunakan Metode Apapun?
 
 #### Opsi 1: Menggunakan SCRUM Saja
