@@ -1,4 +1,4 @@
-### Apakah Lebih Baik Diskominfo Menyuruh Menggunakan SCRUM Saja atau Bebas Developer Menggunakan Metode Apapun?
+### Apakah Lebih Baik Diskominfo Menggunakan SCRUM Saja atau Bebas Developer Menggunakan Metode Apapun?
 
 #### Opsi 1: Menggunakan SCRUM Saja
 **Kelebihan:**
