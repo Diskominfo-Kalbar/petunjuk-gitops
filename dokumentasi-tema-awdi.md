@@ -9,7 +9,7 @@ Pengembang hanya perlu mengubah folder tema tanpa menyentuh folder proyek utama.
 ### Standar Pemanggilan Konten di AWDI
 
 #### Slider
-Untuk memanggil konten slider, gunakan kode berikut:
+Contoh cara pemanggilan konten slider:
 
 ```html
 {{ $sliderImages := .Site.Params.sliders.images }}
@@ -33,7 +33,7 @@ Untuk memanggil konten slider, gunakan kode berikut:
 - **$sliderImages**: Array gambar slider yang diambil dari parameter situs.
 
 #### Front Bundle
-Untuk menampilkan daftar konten di halaman awal, gunakan kode berikut:
+Contoh cara pemanggilan daftar konten di halaman awal:
 
 ```html
 <div class="grid md:grid-cols-1 gap-4 lg:gap-x-16">
@@ -77,7 +77,7 @@ Untuk menampilkan daftar konten di halaman awal, gunakan kode berikut:
 - **$frontBundle2**: Tipe konten kedua yang akan ditampilkan di halaman depan, diambil dari parameter situs.
 
 #### Agenda
-Untuk memanggil konten agenda, gunakan kode berikut:
+Contoh cara pemanggilan konten agenda:
 
 ```html
 {{ $agenda := .Site.Params.agenda }}
@@ -101,7 +101,7 @@ Untuk memanggil konten agenda, gunakan kode berikut:
 - **$agenda**: Array agenda yang diambil dari parameter situs.
 
 #### Menu
-Untuk memanggil konten menu, gunakan kode berikut:
+Contoh cara pemanggilan konten menu:
 
 ```html
 {{ range .Site.Menus.main }}
