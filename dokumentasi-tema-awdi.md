@@ -100,6 +100,23 @@ Contoh cara pemanggilan konten agenda:
 
 - **$agenda**: Array agenda yang diambil dari parameter situs.
 
+#### Running Text
+Contoh cara pemanggilan konten Running Text:
+
+```html
+{{ $runningText := .Site.Params.running_text }}
+{{ if $runningText }}
+<div class="running-text-container">
+  <div class="running-text">
+    <p>{{ range $runningText }}{{ .text }}&nbsp;&nbsp;&nbsp;{{ end }}</p>
+  </div>
+</div>
+{{ end }}
+```
+
+- **$runningText**: Array teks berjalan yang diambil dari parameter situs.
+  
+
 #### Menu
 Contoh cara pemanggilan konten menu:
 
