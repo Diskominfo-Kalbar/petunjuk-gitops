@@ -82,6 +82,7 @@ RUN touch /var/log/php/errors.log && chmod 777 /var/log/php/errors.log
 RUN composer install --optimize-autoloader --no-dev
 RUN  touch /var/www/storage/logs/laravel.log && chown www-data:www-data /var/www/storage/logs/laravel.log
 RUN chmod +x /docker/run.sh
+RUN chmod -R 555 /var/www/public
 
 EXPOSE 80
 # Run the necessary commands at container startup
