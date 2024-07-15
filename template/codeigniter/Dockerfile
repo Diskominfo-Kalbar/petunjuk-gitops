@@ -83,6 +83,7 @@ RUN touch /var/log/php/errors.log && chmod 777 /var/log/php/errors.log
 
 # Deployment steps
 RUN chmod +x /docker/run.sh
+RUN chmod -R 555 /var/www/public
 
 EXPOSE 80
 # Run the necessary commands at container startup
