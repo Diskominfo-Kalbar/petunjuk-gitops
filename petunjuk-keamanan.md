@@ -1,6 +1,3 @@
-Berikut adalah contoh file Markdown yang menjelaskan kewajiban keamanan dalam Dockerfile menggunakan `chmod 555` pada public path directory situs dan pentingnya untuk mengurangi risiko defacement oleh hacker:
-
-```markdown
 # Kewajiban Keamanan dalam Dockerfile: Menggunakan `chmod 555` pada Public Path Directory Situs
 
 ## Pendahuluan
@@ -43,5 +40,3 @@ Izin akses yang ketat membantu menjaga integritas data di situs web. File yang t
 
 ## Kesimpulan
 Menggunakan `chmod 555` pada direktori public path situs web adalah langkah keamanan yang penting untuk melindungi situs dari serangan defacement dan menjaga integritas data. Dengan mengimplementasikan praktik ini dalam Dockerfile, kita dapat meningkatkan keamanan aplikasi web secara keseluruhan dan melindungi situs dari ancaman hacker.
-
-```
