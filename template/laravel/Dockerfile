@@ -1,4 +1,4 @@
-FROM php:8.0-fpm
+FROM php:8.4.0alpha2-fpm
 
 ARG DB_HOST
 ARG DB_USERNAME
