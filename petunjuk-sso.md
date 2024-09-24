@@ -4,6 +4,8 @@ Dokumen ini memberikan panduan langkah demi langkah untuk mengintegrasikan Singl
 
 ## Persiapan
 
+Dokumentasi lengkap untuk laravel socialite keycloack bisa di baca di: [https://socialiteproviders.com/Keycloak]
+
 1. **Instalasi Socialite Keycloak Provider**
 
    Pastikan Anda telah menginstal Socialite Keycloak Provider melalui Composer dengan menjalankan perintah berikut:
