@@ -67,7 +67,7 @@ RUN chown -R www-data:www-data /var/www/session
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN composer update
+RUN composer install
 
 # Install object storage
 RUN composer require aws/aws-sdk-php 
