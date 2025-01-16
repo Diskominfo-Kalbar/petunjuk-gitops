@@ -53,6 +53,8 @@ RUN apt-get install -y supervisor
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+RUN composer update
+
 # Install object storage
 RUN composer require aws/aws-sdk-php 
 
