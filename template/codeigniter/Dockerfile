@@ -50,14 +50,6 @@ RUN apt-get update && apt-get install -y \
 # Install supervisor
 RUN apt-get install -y supervisor
 
-# Install composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-RUN composer update
-
-# Install object storage
-RUN composer require aws/aws-sdk-php 
-
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -71,6 +63,14 @@ COPY --chown=www-data:www-data ./src /var/www
 RUN mkdir -p /var/www/session
 RUN chmod -R 775 /var/www/session
 RUN chown -R www-data:www-data /var/www/session
+
+# Install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN composer update
+
+# Install object storage
+RUN composer require aws/aws-sdk-php 
 
 
 # Copy nginx/php/supervisor configs
