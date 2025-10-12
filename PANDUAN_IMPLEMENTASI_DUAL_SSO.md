@@ -1,14 +1,15 @@
 # Panduan Implementasi Dual SSO (SSO Publik & SSO ASN/Pegawai)
 
+**Panduan untuk Developer**
+
 ## Daftar Isi
 - [Pengantar](#pengantar)
 - [Quick Reference](#quick-reference)
 - [Arsitektur & Konsep](#arsitektur--konsep)
 - [Prerequisites](#prerequisites)
 - [Langkah Implementasi](#langkah-implementasi)
-- [Konfigurasi Detail](#konfigurasi-detail)
 - [Testing & Troubleshooting](#testing--troubleshooting)
-- [Secrets Management untuk Administrator](#secrets-management-untuk-administrator)
+- [FAQ](#faq)
 
 ---
 
@@ -995,23 +996,7 @@ File: `resources/views/auth/login.blade.php`
 
 ---
 
-## Konfigurasi Detail
-
-### Keycloak Client Configuration
-
-#### Untuk Client Pegawai:
-1. Login ke Keycloak Admin Console
-2. Pilih Realm untuk Pegawai
-3. Buat atau edit Client:
-   - **Client ID**: `your-pegawai-client-id`
-   - **Client Protocol**: `openid-connect`
-   - **Access Type**: `confidential`
-   - **Valid Redirect URIs**: `https://yourdomain.com/sso-login-pegawai-callback`
-   - **Web Origins**: `https://yourdomain.com`
-4. Copy Client Secret dari tab Credentials
-
-#### Untuk Client Publik:
-Ulangi langkah yang sama untuk realm publik dengan callback URL: `https://yourdomain.com/sso-login-publik-callback`
+## Konfigurasi Tambahan
 
 ### Session Configuration
 
@@ -1167,128 +1152,62 @@ $user->isPublik();  // should return false
 
 ---
 
-## Security Best Practices
+## Best Practices untuk Developer
 
-### 1. Environment Variables & Secrets Management
-- ✅ **Repository Secrets**: Secrets Keycloak sudah di-set di GitHub repository level oleh administrator
+### 1. Secrets Management
 - ❌ **JANGAN** commit file `.env` ke repository
-- ❌ **JANGAN** menambahkan secrets manual ke repository settings (sudah ada)
-- ✅ Developer hanya perlu referensi `${{ secrets.KEYCLOAK_* }}` di workflow
-- 🔄 Administrator organisasi yang bertanggung jawab untuk rotasi client secret
+- ❌ **JANGAN** menambahkan secrets manual ke repository settings
+- ✅ Referensi `${{ secrets.KEYCLOAK_* }}` di workflow
 - 📝 Untuk local development, gunakan `.env` lokal (tidak di-commit)
+- 📝 Tambahkan `.env` ke `.gitignore`
 
-### 2. Token Management
-- Set session timeout yang wajar (tidak terlalu lama)
-- Implement token refresh jika menggunakan API
-- Clear session saat logout
+### 2. Code Organization
+- Pisahkan logic SSO pegawai dan publik dengan jelas
+- Gunakan helper methods (`isPegawai()`, `isPublik()`) untuk readability
+- Log setiap step authentication untuk debugging
 
-### 3. HTTPS
-- Selalu gunakan HTTPS di production
-- Set `SESSION_SECURE_COOKIE=true`
-- Enforce HTTPS dengan middleware
+### 3. Session & Security
+- Set session timeout yang wajar (default 120 menit)
+- Pastikan `SESSION_SECURE_COOKIE=true` di production
+- CSRF protection otomatis aktif di Laravel
 
-### 4. CSRF Protection
-- Laravel CSRF token otomatis aktif untuk form POST
-- Pastikan `@csrf` directive ada di semua form
+### 4. Database
+- **Recommended**: Gunakan Laravel migration untuk database changes
+- Tambahkan index pada kolom `nip` dan `nik` untuk performa
+- Jangan lupa rollback method di migration
 
-### 5. Rate Limiting
-Implementasi rate limiting untuk endpoint SSO:
-
-```php
-Route::middleware(['throttle:10,1'])->group(function () {
-    Route::get('login/pegawai', [LoginController::class, 'redirectToPegawaiKeycloak']);
-    Route::get('login/publik', [LoginController::class, 'redirectToPublikKeycloak']);
-});
-```
+### 5. Testing
+- Test kedua flow SSO (pegawai dan publik) setelah implementasi
+- Verify data user tersimpan dengan benar di database
+- Test logout flow untuk memastikan session dibersihkan
 
 ---
 
-## Deployment Checklist
+## Deployment Checklist untuk Developer
 
 ### Pre-deployment
-- [ ] ✅ Repository secrets sudah tersedia (dikelola oleh administrator)
-- [ ] Workflow GitHub Actions sudah dikonfigurasi dengan `--build-arg` untuk secrets
+- [ ] Code sudah di-commit dan push ke branch
+- [ ] Migration file sudah dibuat (jika perlu)
+- [ ] Workflow GitHub Actions sudah update dengan build args
 - [ ] Dockerfile sudah memiliki ARG dan ENV untuk Keycloak
-- [ ] Keycloak clients sudah dikonfigurasi dengan correct redirect URIs
-- [ ] Database migration sudah dijalankan
-- [ ] SSL/HTTPS sudah aktif
-- [ ] Session configuration sudah sesuai
+- [ ] Routes sudah terdaftar di `routes/web.php`
 
-### Deployment
-- [ ] `composer install --optimize-autoloader --no-dev`
-- [ ] `php artisan config:cache`
-- [ ] `php artisan route:cache`
-- [ ] `php artisan view:cache`
-- [ ] `php artisan migrate --force`
+### Saat Deployment (Otomatis via CI/CD)
+GitHub Actions akan otomatis:
+- Build Docker image dengan secrets dari repository
+- Run migration (jika dikonfigurasi)
+- Deploy ke environment target
 
 ### Post-deployment
-- [ ] Test SSO Pegawai flow
-- [ ] Test SSO Publik flow
+- [ ] Test SSO Pegawai: `/login/pegawai`
+- [ ] Test SSO Publik: `/login/publik`
+- [ ] Verify user data di database
 - [ ] Test logout flow
-- [ ] Verify logging works
-- [ ] Monitor error logs
+- [ ] Monitor logs untuk error
 
 ---
 
 ## Advanced Configuration
-
-### Custom User Data dari Keycloak
-
-Jika Keycloak mengirim data tambahan (custom attributes):
-
-```php
-public function handlePegawaiKeycloakCallback()
-{
-    $keycloakUser = Socialite::driver('keycloak_pegawai')->user();
-
-    // Akses custom attributes
-    $jabatan = $keycloakUser->user['jabatan'] ?? null;
-    $instansi = $keycloakUser->user['instansi'] ?? null;
-
-    User::updateOrCreate(
-        ['nip' => $nip, 'tipe' => 'pegawai'],
-        [
-            'name' => $keycloakUser->name,
-            'jabatan' => $jabatan,
-            'instansi' => $instansi,
-            // ... fields lain
-        ]
-    );
-}
-```
-
-### Role-Based Access Control (RBAC)
-
-Menggunakan groups dari Keycloak:
-
-```php
-// Dalam callback handler
-$groups = $keycloakUser->user['groups'] ?? [];
-
-// Tentukan role berdasarkan groups
-$role = 'user'; // default
-if (in_array('/admin', $groups)) {
-    $role = 'admin';
-} elseif (in_array('/operator', $groups)) {
-    $role = 'operator';
-}
-
-$user->role = $role;
-$user->save();
-```
-
-Middleware untuk check role:
-
-```php
-public function handle(Request $request, Closure $next, $role)
-{
-    if (!auth()->check() || auth()->user()->role !== $role) {
-        abort(403, 'Unauthorized');
-    }
-
-    return $next($request);
-}
-```
 
 ### Single Logout (SLO)
 
@@ -1329,102 +1248,43 @@ public function logout(Request $request)
 
 ---
 
-## Secrets Management untuk Administrator
+## FAQ
 
-### Untuk Administrator Repository
+### Pertanyaan Umum untuk Developer
 
-Bagian ini untuk administrator yang bertanggung jawab mengatur secrets di GitHub repository.
+#### 1. Apakah saya perlu mengatur secrets Keycloak?
+**Tidak**. Secrets Keycloak sudah di-set di repository level oleh administrator. Anda hanya perlu mereferensikan `${{ secrets.KEYCLOAK_* }}` di workflow dan menambahkan ARG/ENV di Dockerfile.
 
-#### Secrets yang Harus Di-Set di Repository Level:
+#### 2. Bagaimana cara testing SSO di local development?
+Tambahkan environment variables di file `.env` lokal (jangan di-commit). Gunakan `http://localhost:8000/sso-login-*-callback` sebagai redirect URI untuk local development.
 
-Akses: `Repository Settings → Secrets and variables → Actions → New repository secret`
+#### 3. Apakah bisa menggunakan satu realm Keycloak untuk kedua SSO?
+Secara teknis bisa, namun **tidak disarankan**. Memisahkan realm memudahkan management user pegawai vs publik dengan policy dan configuration yang berbeda.
 
-**SSO Pegawai/ASN:**
-```
-Name: KEYCLOAK_PEGAWAI_BASE_URL
-Value: https://asn-sso.kalbarprov.go.id
+#### 4. Database migration via Laravel atau phpMyAdmin?
+**Recommended**: Laravel migration untuk konsistensi dengan CI/CD workflow. Gunakan phpMyAdmin hanya untuk quick fix atau troubleshooting di production.
 
-Name: KEYCLOAK_PEGAWAI_CLIENT_ID
-Value: [client-id-dari-keycloak]
+#### 5. Bagaimana cara menambahkan field custom di user?
+Edit migration file untuk menambahkan kolom baru, kemudian tambahkan ke `$fillable` array di User model. Update callback handler di LoginController untuk menyimpan data tambahan dari Keycloak.
 
-Name: KEYCLOAK_PEGAWAI_CLIENT_SECRET
-Value: [client-secret-dari-keycloak]
+#### 6. Error "invalid_redirect_uri" muncul saat callback
+Pastikan redirect URI di konfigurasi sama persis (termasuk protokol http/https dan trailing slash) dengan yang didaftarkan di Keycloak client. Hubungi administrator untuk verifikasi konfigurasi Keycloak.
 
-Name: KEYCLOAK_PEGAWAI_REDIRECT_URI
-Value: https://yourdomain.com/sso-login-pegawai-callback
+#### 7. Session expired terlalu cepat
+Edit `config/session.php` dan sesuaikan `lifetime` (dalam menit). Default adalah 120 menit.
 
-Name: KEYCLOAK_PEGAWAI_REALM
-Value: kominfo-pegawai
-```
-
-**SSO Publik:**
-```
-Name: KEYCLOAK_PUBLIK_BASE_URL
-Value: https://publik-sso.example.com
-
-Name: KEYCLOAK_PUBLIK_CLIENT_ID
-Value: [client-id-dari-keycloak]
-
-Name: KEYCLOAK_PUBLIK_CLIENT_SECRET
-Value: [client-secret-dari-keycloak]
-
-Name: KEYCLOAK_PUBLIK_REDIRECT_URI
-Value: https://yourdomain.com/sso-login-publik-callback
-
-Name: KEYCLOAK_PUBLIK_REALM
-Value: publik-realm
+#### 8. Bagaimana cara membedakan user pegawai vs publik di aplikasi?
+Gunakan helper method di User model:
+```php
+if (auth()->user()->isPegawai()) {
+    // Logic untuk pegawai
+} else if (auth()->user()->isPublik()) {
+    // Logic untuk publik
+}
 ```
 
-### Verifikasi Secrets
-
-Setelah secrets di-set, verifikasi dengan:
-
-1. **Check di workflow run logs**: Build arguments akan tampil (dengan value tersembunyi)
-2. **Test deployment**: Deploy dan verify SSO berfungsi
-3. **Check environment di container**:
-   ```bash
-   docker exec -it [container-name] env | grep KEYCLOAK
-   ```
-
-### Best Practices untuk Administrator
-
-1. **Rotasi Secrets Berkala**:
-   - Rotasi client secret setiap 6-12 bulan
-   - Update di Keycloak terlebih dahulu
-   - Update di GitHub secrets
-   - Redeploy aplikasi
-
-2. **Dokumentasi**:
-   - Catat tanggal terakhir rotasi secret
-   - Dokumentasikan redirect URIs untuk setiap environment
-   - Simpan backup konfigurasi Keycloak client
-
-3. **Access Control**:
-   - Limit akses ke repository secrets
-   - Gunakan repository/organization level secrets sesuai kebutuhan
-   - Monitor audit logs untuk perubahan secrets
-
-4. **Multi-Environment**:
-   - Untuk multiple environments (dev, staging, prod), pertimbangkan:
-     - Organization secrets untuk shared config
-     - Repository secrets untuk environment-specific config
-     - Environment-specific secrets di GitHub Environments
-
-### Troubleshooting untuk Administrator
-
-#### Secret Tidak Terload di Workflow
-```yaml
-# Verify secret tersedia dengan menampilkan length (bukan value)
-- name: Debug secrets
-  run: |
-    echo "KEYCLOAK_PEGAWAI_BASE_URL length: ${#KEYCLOAK_PEGAWAI_BASE_URL}"
-    echo "Secret available: ${{ secrets.KEYCLOAK_PEGAWAI_BASE_URL != '' }}"
-```
-
-#### Redirect URI Tidak Cocok
-- Pastikan redirect URI di secrets sama persis dengan yang di Keycloak
-- Check untuk trailing slash
-- Verify protokol (http vs https)
+#### 9. Apakah perlu membuat Keycloak client sendiri?
+**Tidak**. Keycloak clients sudah dikonfigurasi oleh administrator organisasi. Anda hanya perlu menggunakan credentials yang sudah tersedia di repository secrets.
 
 ---
 
