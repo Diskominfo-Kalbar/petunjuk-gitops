@@ -1,11 +1,11 @@
-version: '3.5'
+version: "3.5"
 
 services:
   laravel_app:
     user: ${MY_UID}:${MY_GID}
     restart: always
     build:
-      context: '.'
+      context: "."
     ports:
       - "8080:80"
     environment:
@@ -15,7 +15,7 @@ services:
       - DB_USER=root
       - DB_PASSWORD=root
     volumes:
-     - ./src:/var/www
+      - ./src:/var/www
 
   db:
     image: mariadb:11.1
