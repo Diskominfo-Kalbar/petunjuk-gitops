@@ -1,11 +1,11 @@
-version: '3.5'
+version: "3.5"
 
 services:
   PLACEHOLDER_SERVICE_NAME:
     user: ${MY_UID}:${MY_GID}
     restart: always
     build:
-      context: '.'
+      context: "."
     image: PLACEHOLDER_IMAGE_NAME
     networks:
       - kominfo_network
@@ -14,8 +14,8 @@ services:
         constraints:
           - node.hostname == node-manager
     environment:
-    - DB_CONNECTION=mysql
-    - APP_DEBUG=TRUE
+      - DB_CONNECTION=mysql
+      - APP_DEBUG=TRUE
 
 networks:
   kominfo_network:
